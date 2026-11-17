@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ArrowDownUp, ArrowLeft, ArrowRight, Bell, CarFront, Check, ChevronDown, Clock3, Compass, CreditCard, Heart, LocateFixed, MapPin, Menu, Navigation, Search, ShieldCheck, SlidersHorizontal, Sparkles, Star, X } from 'lucide-react';
+import { ArrowDownUp, ArrowLeft, ArrowRight, Bell, CarFront, Check, ChevronDown, Clock3, Compass, Heart, LocateFixed, MapPin, Menu, Navigation, Search, ShieldCheck, SlidersHorizontal, Sparkles, Star, X } from 'lucide-react';
 
 type Lot={id:number;name:string;address:string;city:string;district:string;price:number;capacity:number;free:number;distance:number;rating:number;hours:string;features:string[];lat:number;lng:number;kind:string};
 const lots:Lot[]=[

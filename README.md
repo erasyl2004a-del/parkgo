@@ -40,3 +40,6 @@ Enable GitHub Pages in repository Settings → Pages → Build and deployment �
 4. Integrate verified operator feeds and implement server-side reservation/payment flows before accepting real bookings.
 
 Never put a Supabase service-role key or payment secret in frontend environment variables.
+
+
+<!-- Build verification trigger -->

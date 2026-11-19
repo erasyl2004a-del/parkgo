@@ -1,4 +1,4 @@
-const CACHE_NAME = "parkago-pages-v2";
+const CACHE_NAME = "parkago-pages-v3";
 const APP_FILES = [
   "./index.html",
   "./manifest.webmanifest",

@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "ParkaGo Otopark",
+  "short_name": "ParkaGo",
+  "description": "Türkiye'de otopark bulma ve yönetme uygulaması",
+  "lang": "tr-TR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050b16",
+  "theme_color": "#08142a",
+  "categories": ["travel", "navigation"],
+  "icons": [
+    { "src": "./icons/icon-192.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./icons/icon-512.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -860,7 +860,7 @@
         <p class="note">Kullanıcı hesabı bilgileri</p>
         <div class="tr"><span>E-posta</span><b id="aboutEmail">—</b></div>
         <div class="tr"><span>Telefon</span><b id="aboutPhone">—</b></div>
-        <div class="tr"><span>Hesap türü</span><b>Kullanıcı</b></div>
+        <div class="tr"><span>Hesap türü</span><b id="aboutRole">Kullanıcı</b></div>
       </div>
     </section>
 
@@ -949,7 +949,7 @@
           b.setAttribute("aria-selected", active);
         });
         if (visibleSections.indexOf("biz") >= 0) drawBiz();
-        if (visibleSections.indexOf("about") >= 0) drawAbout(email);
+        if (visibleSections.indexOf("about") >= 0) drawAbout(email, role);
         if (role === "software") drawSoftware();
       }
     }
@@ -1386,8 +1386,9 @@
       $("bizTariffText").textContent = "İlk " + tariff.freeMinutes + " dk ücretsiz · ilk saat " + tariff.firstHour + " ₺ · sonraki her saat " + tariff.nextHour + " ₺ · günlük en çok " + tariff.dailyCap + " ₺";
     }
 
-    function drawAbout(email) {
+    function drawAbout(email, role) {
       $("aboutEmail").textContent = email || "—";
+      $("aboutRole").textContent = role === "business" ? "İşletme" : role === "software" ? "Yazılım / yönetici" : "Kullanıcı";
       var phone = "—";
       try { phone = localStorage.getItem("pg_phone:" + email.toLowerCase()) || "—" } catch (e) { }
       $("aboutPhone").textContent = phone;
@@ -1495,7 +1496,7 @@
       document.querySelectorAll("#nav button").forEach(function (x) { x.setAttribute("aria-selected", x === b) });
       ["map", "car", "biz", "software", "manual", "about"].forEach(function (s) { $(s).classList.toggle("hide", s !== b.dataset.s) });
       if (b.dataset.s === "car") drawCar();
-      if (b.dataset.s === "about") drawAbout($("accountEmail").textContent);
+      if (b.dataset.s === "about") drawAbout($("accountEmail").textContent, activeRole);
       if (b.dataset.s === "software") drawSoftware();
     };
 

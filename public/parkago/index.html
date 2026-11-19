@@ -421,13 +421,16 @@
 
     nav {
       display: flex;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
       border-top: 1px solid var(--line);
       background: var(--card);
       padding-bottom: env(safe-area-inset-bottom, 0px)
     }
 
     nav button {
-      flex: 1;
+      flex: 1 0 76px;
+      min-width: 76px;
       padding: 12px 4px;
       border: 0;
       background: none;
@@ -726,19 +729,19 @@
         </div>
         <div id="roleLogin" class="hide">
           <h2 id="roleTitle">Hesabınıza giriş yapın</h2>
-          <p class="note">E-posta adresinizi ve parolanızı girin.</p>
+          <p class="note">E-posta adresinizi ve şifrenizi girin.</p>
           <div id="loginPanel">
             <form id="loginForm" novalidate>
               <label class="l" for="loginEmail">E-posta adresi</label>
               <input id="loginEmail" type="email" autocomplete="email" inputmode="email" placeholder="ornek@gmail.com" required>
-              <label class="l" for="loginPassword">Parola</label>
-              <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Parolanız" required>
+              <label class="l" for="loginPassword">Şifre</label>
+              <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Şifreniz" required>
               <p id="loginError" class="login-error" role="alert" hidden></p>
               <button class="btn main" type="submit">Giriş yap</button>
             </form>
             <button id="registerOpen" class="btn alt" type="button" style="display:none">Kullanıcı hesabı oluştur</button>
             <button id="backToRoles" class="btn alt" type="button">Giriş türüne dön</button>
-            <p class="note" style="margin:14px 0 0">Demo prototipi: parola ve hesap doğrulaması için sunucu bağlantısı henüz yok.</p>
+            <p class="note" style="margin:14px 0 0">Demo prototipi: şifre ve hesap doğrulaması için sunucu bağlantısı henüz yok.</p>
           </div>
           <div id="userRegister" class="hide">
             <h3>Yeni kullanıcı kaydı</h3>
@@ -747,10 +750,10 @@
               <input id="signupPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05XX XXX XX XX veya +90 5XX XXX XX XX" maxlength="18" required>
               <label class="l" for="signupEmail">Gmail adresi</label>
               <input id="signupEmail" type="email" inputmode="email" autocomplete="email" placeholder="ornek@gmail.com" required>
-              <label class="l" for="signupPassword">Parola (7 harf)</label>
+              <label class="l" for="signupPassword">Şifre (7 harf)</label>
               <input id="signupPassword" type="password" autocomplete="new-password" maxlength="7" placeholder="Tam 7 harf girin" required>
-              <label class="l" for="signupPasswordConfirm">Parolayı tekrar girin</label>
-              <input id="signupPasswordConfirm" type="password" autocomplete="new-password" maxlength="7" placeholder="Parolayı doğrulayın" required>
+              <label class="l" for="signupPasswordConfirm">Şifreyi tekrar girin</label>
+              <input id="signupPasswordConfirm" type="password" autocomplete="new-password" maxlength="7" placeholder="Şifreyi doğrulayın" required>
               <p id="signupError" class="login-error" role="alert" hidden></p>
               <button class="btn main" type="submit">Doğrulama kodu al</button>
             </form>
@@ -792,27 +795,6 @@
     <!-- İŞLETME -->
     <section id="biz" class="hide">
       <div class="card">
-        <h2>Manuel ücretsiz park kaydı</h2>
-        <p class="note">İşletme olarak aracı elle ekleyin. Bu kayıt için ücret her zaman 0 ₺ olur.</p>
-        <button class="btn main" id="bizManualOpen" type="button">Manuel park ekle</button>
-        <div id="bizManualForm" class="hide">
-          <label class="l" for="bizPlate">Araç plakası</label>
-          <input type="text" id="bizPlate" maxlength="10" autocomplete="off" placeholder="71 ABC 123">
-          <label class="l" for="bizFloor">Kat</label>
-          <select id="bizFloor" class="biz-select"></select>
-          <label class="l" for="bizSlot">Park yeri</label>
-          <select id="bizSlot" class="biz-select"></select>
-          <button class="btn main" id="bizAdd" type="button" style="margin-top:12px">Ücretsiz kayıt oluştur ve QR göster</button>
-          <button class="btn alt" id="bizManualCancel" type="button">İptal</button>
-        </div>
-        <p id="bizEntryMsg" class="login-error" role="status" hidden></p>
-        <div id="bizTicket" class="fis hide" style="margin-top:12px">
-          <b>Ücretsiz park QR kodu</b>
-          <div id="bizQr" style="width:max-content;margin:10px auto;background:#fff;padding:10px;border-radius:10px"></div>
-          <p id="bizTicketText" class="note" style="margin-bottom:0"></p>
-        </div>
-      </div>
-      <div class="card">
         <div class="kpis" id="kpis"></div>
       </div>
       <div class="card">
@@ -845,6 +827,30 @@
       <div class="card">
         <h2>Tarife</h2>
         <p class="note" id="bizTariffText"></p>
+      </div>
+    </section>
+
+    <section id="manual" class="hide">
+      <div class="card">
+        <h2>Manuel ücretsiz park kaydı</h2>
+        <p class="note">İşletme olarak aracı elle ekleyin. Bu kayıt için ücret her zaman 0 ₺ olur.</p>
+        <button class="btn main" id="bizManualOpen" type="button">Manuel park ekle</button>
+        <div id="bizManualForm" class="hide">
+          <label class="l" for="bizPlate">Araç plakası</label>
+          <input type="text" id="bizPlate" maxlength="10" autocomplete="off" placeholder="71 ABC 123">
+          <label class="l" for="bizFloor">Kat</label>
+          <select id="bizFloor" class="biz-select"></select>
+          <label class="l" for="bizSlot">Park yeri</label>
+          <select id="bizSlot" class="biz-select"></select>
+          <button class="btn main" id="bizAdd" type="button" style="margin-top:12px">Ücretsiz kayıt oluştur ve QR göster</button>
+          <button class="btn alt" id="bizManualCancel" type="button">İptal</button>
+        </div>
+        <p id="bizEntryMsg" class="login-error" role="status" hidden></p>
+        <div id="bizTicket" class="fis hide" style="margin-top:12px">
+          <b>Ücretsiz park QR kodu</b>
+          <div id="bizQr" style="width:max-content;margin:10px auto;background:#fff;padding:10px;border-radius:10px"></div>
+          <p id="bizTicketText" class="note" style="margin-bottom:0"></p>
+        </div>
       </div>
     </section>
 
@@ -905,8 +911,9 @@
     <button aria-selected="false" data-s="biz"><span><svg viewBox="0 0 24 24">
           <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
         </svg></span>İşletme</button>
-    <button aria-selected="false" data-s="about" style="display:none"><span>◉</span>Hakkımda</button>
     <button aria-selected="false" data-s="software" style="display:none"><span>⚙</span>Yazılım</button>
+    <button aria-selected="false" data-s="manual" style="display:none"><span>＋</span>Manuel ekle</button>
+    <button aria-selected="false" data-s="about" style="display:none"><span>◉</span>Hakkımda</button>
   </nav>
 
   <script>
@@ -928,8 +935,8 @@
       $("loginView").classList.toggle("hide", signedIn);
       $("roleChooser").classList.toggle("hide", signedIn);
       $("roleLogin").classList.toggle("hide", signedIn || !selectedRole);
-      var visibleSections = role === "user" ? ["map", "car", "about"] : role === "business" ? ["biz"] : ["map", "car", "biz", "about", "software"];
-      ["map", "car", "biz", "about", "software"].forEach(function (id) { $(id).classList.toggle("hide", !signedIn || visibleSections.indexOf(id) < 0) });
+      var visibleSections = role === "user" ? ["map", "car", "about"] : role === "business" ? ["biz", "software", "manual", "about"] : ["map", "car", "biz", "software", "manual", "about"];
+      ["map", "car", "biz", "software", "manual", "about"].forEach(function (id) { $(id).classList.toggle("hide", !signedIn || visibleSections.indexOf(id) < 0) });
       $("nav").style.display = signedIn ? "flex" : "none";
       $("mallSel").style.display = signedIn ? "block" : "none";
       $("accountArea").style.display = signedIn ? "flex" : "none";
@@ -1007,8 +1014,8 @@
       var error = "";
       if (!/^(05\d{9}|5\d{9})$/.test(phone)) error = "Geçerli bir cep telefonu numarası girin.";
       else if (!/^[^\s@]+@gmail\.com$/i.test(email)) error = "Kayıt için @gmail.com adresi kullanın.";
-      else if (!/^[A-Za-zÇĞİÖŞÜçğıöşü]{7}$/.test(password)) error = "Parola tam 7 harften oluşmalı; rakam ve sembol kullanmayın.";
-      else if (password !== confirm) error = "Parola alanları eşleşmiyor.";
+      else if (!/^[A-Za-zÇĞİÖŞÜçğıöşü]{7}$/.test(password)) error = "Şifre tam 7 harften oluşmalı; rakam ve sembol kullanmayın.";
+      else if (password !== confirm) error = "Şifre alanları eşleşmiyor.";
       if (error) {
         $("signupError").textContent = error;
         $("signupError").hidden = false;
@@ -1049,7 +1056,7 @@
         return;
       }
       if (!password) {
-        $("loginError").textContent = "Parolanızı girin.";
+        $("loginError").textContent = "Şifrenizi girin.";
         $("loginError").hidden = false;
         $("loginPassword").focus();
         return;
@@ -1486,7 +1493,7 @@
     $("nav").onclick = function (e) {
       var b = e.target.closest("button"); if (!b) return;
       document.querySelectorAll("#nav button").forEach(function (x) { x.setAttribute("aria-selected", x === b) });
-      ["map", "car", "biz", "about", "software"].forEach(function (s) { $(s).classList.toggle("hide", s !== b.dataset.s) });
+      ["map", "car", "biz", "software", "manual", "about"].forEach(function (s) { $(s).classList.toggle("hide", s !== b.dataset.s) });
       if (b.dataset.s === "car") drawCar();
       if (b.dataset.s === "about") drawAbout($("accountEmail").textContent);
       if (b.dataset.s === "software") drawSoftware();
